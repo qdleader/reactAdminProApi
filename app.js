@@ -18,6 +18,12 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+const PORT = process.env.PORT || 3030;
+
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
