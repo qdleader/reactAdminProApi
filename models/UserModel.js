@@ -18,6 +18,7 @@ const Schema = mongoose.Schema
 const UserType = {
   username: String,
   password: String,
+  createTime: String,
   gender: Number,
   introduction: String,
   avatar: String,

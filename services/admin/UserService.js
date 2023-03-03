@@ -12,9 +12,9 @@ const UserService = {
     let registerRes = await UserModel.create({
       username: username,
       password: password,
-      time: new Date()
+      createTime: new Date()
     }).then(() => {
-      console.log("插入成功");
+      console.log("注册插入成功");
       return true
     }).catch((err) => {
       console.log(err);
