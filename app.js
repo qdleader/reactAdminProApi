@@ -11,6 +11,9 @@ var usersRouter = require('./routes/users');
 var UserData = require('./routes/admin/UserRouter');
 
 
+var UploadData = require('./routes/admin/UploadRouter');
+
+
 
 var app = express();
 
@@ -35,19 +38,25 @@ app.set('view engine', 'ejs');
 
 //我这边使用了中间件
 var cors = require("cors");
-
 app.use(cors());
+
+
+// 支持文件上传
+const multer = require("multer");
+app.use(multer({ dest: "/tmp/" }).array("avitar"));//上传支持
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// 静态路径
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use(UserData.UserRouter);
 app.use(UserData.UserRouterRegister);
+app.use(UploadData.UploadFileRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
