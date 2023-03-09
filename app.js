@@ -42,8 +42,12 @@ app.use(cors());
 
 
 // 支持文件上传
-const multer = require("multer");
-app.use(multer({ dest: "/tmp/" }).array("avitar"));//上传支持
+// const multer = require("multer");
+// // app.use(multer({ dest: "/tmp/" }).array("avitar"));//上传支持
+// var upload = multer({ dest: './upload/' });
+// 引入express-fileuplod
+var fileUpload = require('express-fileupload');
+app.use(fileUpload());
 
 app.use(logger('dev'));
 app.use(express.json());

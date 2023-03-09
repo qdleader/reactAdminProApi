@@ -1,49 +1,38 @@
 var UserService = require("../../services/admin/UserService")
 const JWT = require("../../utils/jwtUtil")
+const { imgPath } = require("../../config")
 const UserController = {
-  UploadFile: async (req, res) => {
-    console.log(110, req)
-    // let result = await UserService.login(req.body)
-    // let { username, password } = req.body
-    // res.json({
-    //     files:req.files
-    // })
+  UploadFile: (req, res) => {
+    console.log("req.files", req.files);
+    let fileObj = null;
+    let filePath = '';
 
-    const des_file = imgPath + "/" + req.files[0].originalname;
-    fs.readFile(req.files[0].path, function (err, data) {
-      fs.writeFile(des_file, data, function (err) {
-        if (err) {
-          console.log(err);
-          res.json(err)
-        } else {
-          response = {
-            username: req.body.username,
-            message: "File uploaded successfully",
-            filename: req.files[0].originalname,
-          };
-        }
-        console.log(response);
-        res.json(response);
-      });
-    });
+    if (!req.files || Object.keys(req.files).length === 0) {
+      res.status(400).send({
+        code: 1,
+        msg: 'Bad Request.'
+      })
+      return;
+    }
 
+    /* file 是上传时候body中的一个字段，有可以随意更改*/
+    console.log(req.files, req.files.file)
+    fileObj = req.files.file;
 
-    // 如果登录成功 记录之
-    // let token = null;
-    // if (result.length === 0) {
-    //   res.send({
-    //     code: '4001',
-    //     msg: "账号或密码错误"
-    //   })
-    // } else {
-    //   token = JWT.generate({ username, password });
-    //   console.log("login:token=", token);
-    //   res.send({
-    //     ActionType: 'ok',
-    //     token: token,
-    //     msg: "操作成功"
-    //   })
-    // }
+    filePath = imgPath + "/" + fileObj.name;
+    fileObj.mv(filePath, (err) => {
+      if (err) {
+        return res.status(500).send({
+          code: 1,
+          msg: 'System error'
+        })
+      }
+      res.send({
+        code: 0,
+        data: 'Upload Successfuly'
+      })
+    })
+
   }
 }
 

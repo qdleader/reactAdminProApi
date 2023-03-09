@@ -7,7 +7,8 @@ var UploadFileRouter = express.Router();
 
 
 // 上传
-UploadFileRouter.post("/api/UploadFile", loginCheck, UploadController.UploadFile)
+UploadFileRouter.post("/api/upload", UploadController.UploadFile)
+// UploadFileRouter.post("/api/upload", loginCheck, UploadController.UploadFile)
 
 
 
