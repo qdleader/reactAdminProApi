@@ -37,8 +37,23 @@ const UserController = {
         ActionType: 'ok',
       })
     }
-
-  }
+  },
+  // 添加
+  add: async (req, res) => {
+    let result = await UserService.add(req.body)
+    console.log("add", result);
+    if (!result) {
+      res.send({
+        code: '-1',
+        msg: "操作失败"
+      })
+    } else {
+      // 注册成功
+      res.send({
+        ActionType: 'ok',
+      })
+    }
+  },
 }
 
 module.exports = UserController

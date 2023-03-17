@@ -1,5 +1,5 @@
+require("./index")
 const mongoose = require("mongoose")
-
 const Schema = mongoose.Schema
 
 const UserType = {
@@ -9,9 +9,13 @@ const UserType = {
   gender: Number,
   introduction: String,
   avatar: String,
+  title: String,
+  description: String,
+  address: String,
+  hobby: String,
   role: Number
 }
 
-const UserModel = mongoose.model("user", new Schema(UserType))
+const PersonModel = mongoose.model("person", new Schema(UserType))
 
-module.exports = UserModel
+module.exports = PersonModel

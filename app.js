@@ -58,8 +58,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 app.use(UserData.UserRouter);
 app.use(UserData.UserRouterRegister);
+app.use(UserData.UserRouterAdd);
+
 app.use(UploadData.UploadFileRouter);
 
 // catch 404 and forward to error handler
