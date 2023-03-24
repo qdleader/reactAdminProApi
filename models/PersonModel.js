@@ -10,6 +10,7 @@ const UserType = {
   introduction: String,
   avatar: String,
   title: String,
+  name: String,
   description: String,
   address: String,
   hobby: String,

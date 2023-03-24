@@ -21,13 +21,11 @@ const UserService = {
       console.log(err);
       return false
     })
-    console.log("registerRes", registerRes);
     return registerRes
   },
-  add: async ({ title, description, address, hobby }) => {
-    console.log("title, description, address, hobby ", title, description, address, hobby)
+  add: async ({ name, title, description, address, hobby }) => {
     let registerRes = await PersonModel.create({
-      title: title,
+      name: name,
       description: description,
       address: address,
       hobby: hobby,
@@ -39,9 +37,10 @@ const UserService = {
       console.log(err);
       return false
     })
-    console.log("registerRes", registerRes);
     return registerRes
   },
-
+  userList: async () => {
+    return PersonModel.find()
+  },
 }
 module.exports = UserService

@@ -4,14 +4,12 @@ const regToken = /Bearer (.+)/
 const loginCheck = function (req, res, next) {
   // const token = regToken.exec(req.headers["authorization"])[1]
   const token = req.headers["token"]
-  console.log("token", token);
-  if (!token) {
+  if (token) {
     const info = JWT.verify(token);
-    console.log("verifiedRet", info);
     info ? next() : res.json({
       token,
       info,
-      msg: "请先登录"
+      msg: "请先登录！"
     });
   } else {
     res.json({

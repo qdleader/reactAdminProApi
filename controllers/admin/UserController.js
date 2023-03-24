@@ -54,6 +54,23 @@ const UserController = {
       })
     }
   },
+  // 列表
+  userList: async (req, res) => {
+    let result = await UserService.userList(req.body)
+    console.log("userList", result);
+    if (!result) {
+      res.send({
+        code: '-1',
+        msg: "操作失败"
+      })
+    } else {
+      // 列表返回成功
+      res.send({
+        ActionType: 'ok',
+        data: result
+      })
+    }
+  },
 }
 
 module.exports = UserController
