@@ -42,5 +42,20 @@ const UserService = {
   userList: async () => {
     return PersonModel.find()
   },
+  userDelete: async (deleteId) => {
+    if (deleteId) {
+      return PersonModel.findByIdAndRemove({ _id: deleteId }).then(user => {
+        // user.save().then(user => {
+        //   return true
+        //   // return res.json(user)
+        // })
+        return true
+      })
+    }
+    // const product = await PersonModel.findById(deleteId)
+    // console.log("product", product);
+    // await product.delete()
+    // return true
+  },
 }
 module.exports = UserService

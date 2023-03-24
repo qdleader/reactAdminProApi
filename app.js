@@ -63,6 +63,7 @@ app.use(UserData.UserRouter);
 app.use(UserData.UserRouterRegister);
 app.use(UserData.UserRouterAdd);
 app.use(UserData.UserRouterList);
+app.use(UserData.UserRouterListDelete);
 
 app.use(UploadData.UploadFileRouter);
 
