@@ -8,6 +8,7 @@ var UserRouterRegister = express.Router();
 var UserRouterAdd = express.Router();
 var UserRouterList = express.Router();
 var UserRouterListDelete = express.Router();
+var UserRouterListEdit = express.Router();
 // 登录
 // UserRouter.post("/api/user/login", loginCheck, UserController.login)
 UserRouter.post("/api/user/login", UserController.login)
@@ -23,4 +24,7 @@ UserRouterList.get("/api/user/list", loginCheck, UserController.userList)
 // 删除
 UserRouterListDelete.delete("/api/user/delete/:id", loginCheck, UserController.userDelete)
 
-module.exports = { UserRouter, UserRouterRegister, UserRouterAdd, UserRouterList, UserRouterListDelete }
+// 编辑
+UserRouterListEdit.put("/api/user/edit", loginCheck, UserController.userEdit)
+
+module.exports = { UserRouter, UserRouterRegister, UserRouterAdd, UserRouterList, UserRouterListDelete, UserRouterListEdit }

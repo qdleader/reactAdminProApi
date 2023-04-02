@@ -39,6 +39,36 @@ const UserService = {
     })
     return registerRes
   },
+  edit: async ({ name, title, description, address, hobby }) => {
+
+    //   //更新数据
+    //   Userinfo.findByIdAndUpdate({ _id: req.params.id }, 
+    //     { $set: UserName }, { new: true })
+    // .then(user => {
+    //   if (!user) {
+    //     return res.status(400).json("数据不存在");
+    //   }
+    //  res.json(user);
+    // })
+    // .catch(err => {
+    //   return res.status(404).json(err);
+    // });
+
+    let registerRes = await PersonModel.create({
+      name: name,
+      description: description,
+      address: address,
+      hobby: hobby,
+      createTime: new Date()
+    }).then(() => {
+      console.log("用户编辑插入成功");
+      return true
+    }).catch((err) => {
+      console.log(err);
+      return false
+    })
+    return registerRes
+  },
   userList: async () => {
     return PersonModel.find()
   },

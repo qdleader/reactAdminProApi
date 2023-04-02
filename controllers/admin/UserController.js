@@ -54,6 +54,22 @@ const UserController = {
       })
     }
   },
+  // 编辑
+  userEdit: async (req, res) => {
+    let result = await UserService.edit(req.body)
+    console.log("edit", result);
+    if (!result) {
+      res.send({
+        code: '-1',
+        msg: "操作失败"
+      })
+    } else {
+      // 注册成功
+      res.send({
+        ActionType: 'ok',
+      })
+    }
+  },
   // 列表
   userList: async (req, res) => {
     let result = await UserService.userList(req.body)
