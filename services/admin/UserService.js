@@ -66,6 +66,7 @@ const UserService = {
     return editRes
   },
   userList: async ({ name }) => {
+    console.log("name", name);
     if (name) {
       return PersonModel.find({ name })
     } else {

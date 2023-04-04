@@ -72,7 +72,8 @@ const UserController = {
   },
   // 列表
   userList: async (req, res) => {
-    let result = await UserService.userList(req.body)
+    // console.log("req", req.query);
+    let result = await UserService.userList(req.query)
     // console.log("userList", result);
     if (!result) {
       res.send({
