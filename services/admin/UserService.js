@@ -65,8 +65,13 @@ const UserService = {
       });
     return editRes
   },
-  userList: async () => {
-    return PersonModel.find()
+  userList: async ({ name }) => {
+    if (name) {
+      return PersonModel.find({ name })
+    } else {
+      return PersonModel.find()
+    }
+
   },
   userDelete: async (deleteId) => {
     if (deleteId) {
